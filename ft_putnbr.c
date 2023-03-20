@@ -18,7 +18,7 @@ int	ft_intlen(int n)
 	return (a);
 }
 
-void	ft_putnbr(int nb, int i)
+int	ft_putnbr(long int nb, int i)
 {
 	int	a;
 	int	p;

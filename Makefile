@@ -1,30 +1,27 @@
-SRCS	=	ft_printf(char const *s, ...);
-			
+SRCS	=	ft_printf.c\
+			ft_put.c \
+			ft_putchr.c \
+			ft_puthex.c \
+			ft_putnbr.c\
+			ft_putstr.c
+
 OBJS	= ${SRCS:.c=.o}
 
-SRCSB	=	
-
-OBJB	= ${SRCSB:.c=.o}
-
-NAME	= printf.a
+NAME	= libftprintf.a
 
 CC	= gcc
 
 RM	= rm -f
 
+AR	= ar rc
+
 CFLAGS	= -Wall -Wextra -Werror
 
-AR = ar rc
-
 .c.o:
-		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+		${CC} ${CFLAGS} -c  $< -o ${<:.c=.o}
 
-${NAME}:	${OBJS} ${OBJB}
+${NAME}:	${OBJS}
 				${AR} ${NAME} ${OBJS}
-				ranlib ${NAME}
-
-bonus:		${OBJS} ${OBJB}
-				${AR}  ${NAME} ${OBJB}
 				ranlib ${NAME}
 
 all:		${NAME}
@@ -35,6 +32,6 @@ clean:
 fclean: 	clean
 				${RM} ${NAME}
 
-re: 		fclean all bonus
+re: 		fclean all
 
 .PHONY:		all clean fclean re

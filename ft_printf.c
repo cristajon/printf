@@ -6,45 +6,53 @@
 /*   By: ceaizkor <ceaizkor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:07:01 by ceaizkor          #+#    #+#             */
-/*   Updated: 2023/03/08 13:32:22 by ceaizkor         ###   ########.fr       */
+/*   Updated: 2023/03/20 19:28:38 by ceaizkor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
+
 int	ft_printf(char const *s, ...)
 {
 	int		i;
+	int		j;
 	va_list	arg;
 
 	va_start(arg, s);
 	i = 0;
-	if(!s)
+	j = 0;
+	if (!s)
 		return (0);
-	while(s)
+	while (s[i])
 	{
-		while(s[i] != '%')
+		while (s[i] != '%')
 		{
 			write(1, &s[i], 1);
 			i++;
+			j++;
 		}
-		if(s[i] == '%')
+		if (s[i] == '%')
 			i++;
-		if(s[i] == 'c')
-			i = ft_putchar(va_arg(arg, char), i);
+		if (s[i] == 'c')
+			j = ft_putchr(va_arg(arg, int), j);
 		else if (s[i] == 's')
-			i = ft_putchr(va_arg(arg, char *), i);
+			j = ft_putstr(va_arg(arg, char *), j);
 		else if (s[i] == 'p')
-			i = ft_put(va_arg(arg, void *), i);
-		else if (s[i] == 'd')
-			i = ft_putstr(va_arg(arg, int), i);
-		else if (s[i] == 'i')
-			i = ft_putnbr(va_arg(arg, long int), i);
+			j = ft_put(va_arg(arg,  unsigned long int), j);
+		else if (s[i] == 'i' || s[i] == 'd')
+			j = ft_putnbr(va_arg(arg, long int), j);
 		else if (s[i] == 'u')
-			i = ft_putnbr(va_arg(arg, int), i);
-		else if (s[i] == 'x')
-			i = ft_puthex(va_arg(arg, unsigned long int), i);
-		else if (s[i] == 'X')
-			i = ft_puthex(va_arg(arg, unsigned long int), i);
+			j = ft_putnbr(va_arg(arg, int), j);
+		else if (s[i] == 'x' || s[i] == 'X')
+			j = ft_puthex(va_arg(arg, unsigned long int), j, s[i]);
+	i++;
 	}
-	return (i);
+	return (j);
 }
+// int main()
+// {
+	
+// 	ft_printf("Funsion -> %X", 14);
+// 	return(0);
+// }
+// // no furula d i x X u

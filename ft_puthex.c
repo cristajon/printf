@@ -1,6 +1,6 @@
-#include "printf.h"
+#include	"printf.h"
 
-int	ft_intlen(int n)
+int ft_let(int n)
 {
 	int	a;
 
@@ -18,31 +18,31 @@ int	ft_intlen(int n)
 	return (a);
 }
 
-int	ft_puthex(unsigned long int nb, int i)
+int ft_puthex(unsigned long int nb, int i, char s)
 {
-	char	*b;
+	int		b;
 	int		p;
-	int		a;
 
-	p = i + ft_intlen(nb);
-
-	if (nb < 0)
-	{
-		write(1, "-", 1);
-		ft_putnbr(nb * (-1), i);
-	}
-	else if (nb <= 9 && nb >= 0)
+	p = 0;
+	b = nb;
+	if (nb <= 9 && nb >= 0)
 	{
 		nb = nb + 48;
 		write(1, &nb, 1);
 	}
-	else if (nb > 9)
+	else if (nb >= 10 && nb <= 16)
 	{
-		a = nb / 10;
-		ft_putnbr(a, i);
-		nb = nb % 10;
-		ft_putnbr(nb, i);
+		if(s == 'X')
+			ft_putchr(nb - 10 + 'A', i);
+		else
+			ft_putchr(nb - 10 + 'a', i);
 	}
+	else if (nb > 16)
+	{
+		ft_puthex(nb / 16, i, s);
+		ft_puthex(nb % 16, i, s);
+	}
+	if(nb == 0)
+		p = i + ft_let(b);
 	return (p);
 }
-
