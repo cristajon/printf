@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_put.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ceaizkor <ceaizkor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 19:27:04 by ceaizkor          #+#    #+#             */
-/*   Updated: 2023/03/20 19:28:10 by ceaizkor         ###   ########.fr       */
+/*   Updated: 2023/03/21 13:55:23 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,8 @@
 
 int	ft_put(unsigned long int s, int i)
 {
-	int		p;
-	char	x;
 
-	x = 'x';
-	p = 0;
 	write(1, "0x", 2);
-	i = ft_puthex(s, i, x);
+	i = ft_puthex(s, i, 'x');
 	return (i + 2);
 }

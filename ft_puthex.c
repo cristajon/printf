@@ -25,7 +25,7 @@ int ft_puthex(unsigned long int nb, int i, char s)
 
 	p = 0;
 	b = nb;
-	if (nb <= 9 && nb >= 0)
+	if (nb <= 9)
 	{
 		nb = nb + 48;
 		write(1, &nb, 1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ceaizkor <ceaizkor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:07:01 by ceaizkor          #+#    #+#             */
-/*   Updated: 2023/03/20 19:28:38 by ceaizkor         ###   ########.fr       */
+/*   Updated: 2023/03/21 14:07:53 by mario            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	ft_printf(char const *s, ...)
 		}
 		if (s[i] == '%')
 			i++;
+		if (s[i] == '%')
+			write(1, "%", 1);
 		if (s[i] == 'c')
 			j = ft_putchr(va_arg(arg, int), j);
 		else if (s[i] == 's')
@@ -49,10 +51,10 @@ int	ft_printf(char const *s, ...)
 	}
 	return (j);
 }
-// int main()
-// {
+int main()
+{
 	
-// 	ft_printf("Funsion -> %X", 14);
-// 	return(0);
-// }
-// // no furula d i x X u
+	ft_printf("%s", "");
+	return(0);
+}
+//no furula d i x X u
