@@ -1,47 +1,66 @@
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ceaizkor <ceaizkor@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/30 08:28:14 by ceaizkor          #+#    #+#             */
+/*   Updated: 2023/03/30 17:17:42 by ceaizkor         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int	ft_intlen(int n)
+#include "ft_printf.h"
+
+void	ft_putnbr(int nb, int *i)
 {
-	int	a;
-
-	a = 0;
-	if (n <= 0)
+	if (nb == INT_MIN)
 	{
-		n = n * -1;
-		a++;
+		ft_putstr("-2147483648", i);
+		return;
 	}
-	while (n != 0)
+	if (nb < 0)
 	{
-		n = n / 10;
-		a++;
+		ft_putchr('-', i);
+		nb *= -1;
 	}
-	return (a);
+	if (nb <= 9)
+		ft_putchr(nb + 48, i);
+	if (nb > 9)
+	{
+		ft_putnbr(nb / 10, i);
+		ft_putnbr(nb % 10, i);
+	}
 }
 
-int	ft_putnbr(long int nb, int i)
+void	ft_putuns(unsigned int nb, int *i)
 {
-	int	a;
-	int	p;
-
-	p = i + ft_intlen(nb);
-	if (nb == -2147483648)
-		write(1, "-2147483648", 11);
-	else if (nb < 0)
+	if (nb <= 9)
+		ft_putchr(nb + 48, i);
+	if (nb > 9)
 	{
-		write(1, "-", 1);
-		ft_putnbr(nb * (-1), i);
+		ft_putuns(nb / 10, i);
+		ft_putuns(nb % 10, i);
 	}
-	else if (nb <= 9 && nb >= 0)
-	{
-		nb = nb + 48;
-		write(1, &nb, 1);
-	}
-	else if (nb > 9)
-	{
-		a = nb / 10;
-		ft_putnbr(a, i);
-		nb = nb % 10;
-		ft_putnbr(nb, i);
-	}
-	return (p);
 }
+
+// ft_putbase(123123, i, "0123456789");
+
+// void	ft_putbase(int nb, int *i, char *base)
+// {
+// 	int len = ft_strlen(base);
+// 	// if (nb == -2147483648)
+// 	// 	ft_putstr("-2147483648", i);
+// 	if (nb < 0)
+// 	{
+// 		ft_putchr('-', i);
+// 		nb *= -1;
+// 	}
+// 	if (nb < len)
+// 		ft_putchr(base[nb], i);
+// 	if (nb >= len)
+// 	{
+// 		ft_putnbr(nb / len, i);
+// 		ft_putnbr(nb % len, i);
+// 	}
+// }

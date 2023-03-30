@@ -3,58 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ceaizkor <ceaizkor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:07:01 by ceaizkor          #+#    #+#             */
-/*   Updated: 2023/03/21 14:07:53 by mario            ###   ########.fr       */
+/*   Updated: 2023/03/30 17:25:47 by ceaizkor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 int	ft_printf(char const *s, ...)
 {
 	int		i;
-	int		j;
 	va_list	arg;
 
 	va_start(arg, s);
 	i = 0;
-	j = 0;
 	if (!s)
 		return (0);
-	while (s[i])
+	while (*s)
 	{
-		while (s[i] != '%')
+		while (*s != '%' && *s)
+			ft_putchr(*s++, &i);
+		if (*s ==  '%')
 		{
-			write(1, &s[i], 1);
-			i++;
-			j++;
+			if (*(s + 1) == '%')
+				ft_putchr('%', &i);
+			else if (*(s + 1)  == 'c')
+				ft_putchr(va_arg(arg, int), &i);
+			else if (*(s + 1)  == 's')
+				ft_putstr(va_arg(arg, char *), &i);
+			else if (*(s + 1)  == 'p')
+				ft_put(va_arg(arg, unsigned long int), &i);
+			else if (*(s + 1) == 'i' || *(s + 1)  == 'd')
+				ft_putnbr(va_arg(arg, int), &i);
+			else if (*(s + 1)  == 'u')
+				ft_putuns(va_arg(arg, unsigned int), &i);
+			else if (*(s + 1)  == 'x' || *(s + 1)  == 'X')
+				ft_puthex(va_arg(arg, unsigned int), &i, *(s+1));
+			s += 2;
 		}
-		if (s[i] == '%')
-			i++;
-		if (s[i] == '%')
-			write(1, "%", 1);
-		if (s[i] == 'c')
-			j = ft_putchr(va_arg(arg, int), j);
-		else if (s[i] == 's')
-			j = ft_putstr(va_arg(arg, char *), j);
-		else if (s[i] == 'p')
-			j = ft_put(va_arg(arg,  unsigned long int), j);
-		else if (s[i] == 'i' || s[i] == 'd')
-			j = ft_putnbr(va_arg(arg, long int), j);
-		else if (s[i] == 'u')
-			j = ft_putnbr(va_arg(arg, int), j);
-		else if (s[i] == 'x' || s[i] == 'X')
-			j = ft_puthex(va_arg(arg, unsigned long int), j, s[i]);
-	i++;
 	}
-	return (j);
+	va_end(arg);
+	return(i);
 }
+
 int main()
 {
-	
-	ft_printf("%s", "");
+	printf("\001\002\007\v\010\f\r\n");
+	printf("MIO\n");
+	ft_printf("\001\002\007\v\010\f\r\n");
 	return(0);
 }
-//no furula d i x X u
+// // algo pasa que me escribe numeros, y no se como hacer para que saltos de linea y \x01\x02\a\v\b\f\r\n me funcionen
+// // y en los de ellos no los tienen en cuenta

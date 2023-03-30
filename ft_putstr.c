@@ -1,14 +1,29 @@
-#include "printf.h"
-int	ft_putstr(char *s, int i)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ceaizkor <ceaizkor@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/30 08:28:20 by ceaizkor          #+#    #+#             */
+/*   Updated: 2023/03/30 16:37:59 by ceaizkor         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
+
+void	ft_putstr(char *s, int *i)
 {
-	int p;
+	int	p;
 
 	p = 0;
-	while(s[p])
+	if (!s)
 	{
-		write(1, &s[p], 1);
-		p++;
+		ft_putstr("(null)", i);
+		return ;
 	}
-	i = i + p;
-	return (i);
+	while (s[p])
+	{
+		ft_putchr(s[p++], i);
+	}
 }

@@ -3,19 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_put.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ceaizkor <ceaizkor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 19:27:04 by ceaizkor          #+#    #+#             */
-/*   Updated: 2023/03/21 13:55:23 by mario            ###   ########.fr       */
+/*   Updated: 2023/03/30 17:20:33 by ceaizkor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"printf.h"
+#include	"ft_printf.h"
 
-int	ft_put(unsigned long int s, int i)
+void	ft_put(unsigned long int s, int *i)
 {
+	int		p;
+	char	x;
 
-	write(1, "0x", 2);
-	i = ft_puthex(s, i, 'x');
-	return (i + 2);
+	x = 'x';
+	p = 0;
+	ft_putstr("0x", i);
+	ft_putx(s, i, x);
 }

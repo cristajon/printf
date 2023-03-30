@@ -6,15 +6,14 @@
 /*   By: ceaizkor <ceaizkor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:08:03 by ceaizkor          #+#    #+#             */
-/*   Updated: 2023/03/20 17:16:49 by ceaizkor         ###   ########.fr       */
+/*   Updated: 2023/03/30 16:23:08 by ceaizkor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-int	ft_putchr(char s, int i)
+void	ft_putchr(char s, int *i)
 {
-	i++;
+	(*i)++;
 	write(1, &s, 1);
-	return (i);
 }
