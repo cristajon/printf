@@ -6,12 +6,12 @@
 /*   By: ceaizkor <ceaizkor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 08:27:50 by ceaizkor          #+#    #+#             */
-/*   Updated: 2023/03/30 17:21:34 by ceaizkor         ###   ########.fr       */
+/*   Updated: 2023/04/19 10:44:02 by ceaizkor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 # include <unistd.h>
 # include <stdio.h>
 # include <strings.h>

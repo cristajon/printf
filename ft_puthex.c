@@ -6,7 +6,7 @@
 /*   By: ceaizkor <ceaizkor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 08:29:04 by ceaizkor          #+#    #+#             */
-/*   Updated: 2023/03/30 17:21:51 by ceaizkor         ###   ########.fr       */
+/*   Updated: 2023/04/19 09:35:25 by ceaizkor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	ft_puthex(unsigned int nb, int *i, char s)
 {
-	int		p;
-
-	p = 0;
 	if (nb <= 9 && nb >= 0)
 	{
 		nb = nb + 48;
@@ -35,11 +32,9 @@ void	ft_puthex(unsigned int nb, int *i, char s)
 		ft_puthex(nb % 16, i, s);
 	}
 }
+
 void	ft_putx(unsigned long int nb, int *i, char s)
 {
-	int		p;
-
-	p = 0;
 	if (nb <= 9 && nb >= 0)
 	{
 		nb = nb + 48;

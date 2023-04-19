@@ -6,7 +6,7 @@
 /*   By: ceaizkor <ceaizkor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 19:27:04 by ceaizkor          #+#    #+#             */
-/*   Updated: 2023/03/30 17:20:33 by ceaizkor         ###   ########.fr       */
+/*   Updated: 2023/04/19 10:38:37 by ceaizkor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 void	ft_put(unsigned long int s, int *i)
 {
-	int		p;
 	char	x;
 
 	x = 'x';
-	p = 0;
 	ft_putstr("0x", i);
 	ft_putx(s, i, x);
 }

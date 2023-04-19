@@ -6,11 +6,34 @@
 /*   By: ceaizkor <ceaizkor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:07:01 by ceaizkor          #+#    #+#             */
-/*   Updated: 2023/03/30 17:25:47 by ceaizkor         ###   ########.fr       */
+/*   Updated: 2023/04/19 10:43:53 by ceaizkor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+char const	*ft_aux(char const *s, va_list arg, int *i)
+{
+	if (*s == '%')
+	{
+		if (*(s + 1) == '%')
+			ft_putchr('%', i);
+		else if (*(s + 1) == 'c')
+			ft_putchr(va_arg(arg, int), i);
+		else if (*(s + 1) == 's')
+			ft_putstr(va_arg(arg, char *), i);
+		else if (*(s + 1) == 'p')
+			ft_put(va_arg(arg, unsigned long int), i);
+		else if (*(s + 1) == 'i' || *(s + 1) == 'd')
+			ft_putnbr(va_arg(arg, int), i);
+		else if (*(s + 1) == 'u')
+			ft_putuns(va_arg(arg, unsigned int), i);
+		else if (*(s + 1) == 'x' || *(s + 1) == 'X')
+			ft_puthex(va_arg(arg, unsigned int), i, *(s + 1));
+		s += 2;
+	}
+	return (s);
+}
 
 int	ft_printf(char const *s, ...)
 {
@@ -25,35 +48,8 @@ int	ft_printf(char const *s, ...)
 	{
 		while (*s != '%' && *s)
 			ft_putchr(*s++, &i);
-		if (*s ==  '%')
-		{
-			if (*(s + 1) == '%')
-				ft_putchr('%', &i);
-			else if (*(s + 1)  == 'c')
-				ft_putchr(va_arg(arg, int), &i);
-			else if (*(s + 1)  == 's')
-				ft_putstr(va_arg(arg, char *), &i);
-			else if (*(s + 1)  == 'p')
-				ft_put(va_arg(arg, unsigned long int), &i);
-			else if (*(s + 1) == 'i' || *(s + 1)  == 'd')
-				ft_putnbr(va_arg(arg, int), &i);
-			else if (*(s + 1)  == 'u')
-				ft_putuns(va_arg(arg, unsigned int), &i);
-			else if (*(s + 1)  == 'x' || *(s + 1)  == 'X')
-				ft_puthex(va_arg(arg, unsigned int), &i, *(s+1));
-			s += 2;
-		}
+		s = ft_aux(s, arg, &i);
 	}
 	va_end(arg);
-	return(i);
+	return (i);
 }
-
-int main()
-{
-	printf("\001\002\007\v\010\f\r\n");
-	printf("MIO\n");
-	ft_printf("\001\002\007\v\010\f\r\n");
-	return(0);
-}
-// // algo pasa que me escribe numeros, y no se como hacer para que saltos de linea y \x01\x02\a\v\b\f\r\n me funcionen
-// // y en los de ellos no los tienen en cuenta
